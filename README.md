@@ -8,7 +8,7 @@ A Website demo for our project of book store, The website has ability of adding 
 
 ## Live Link
 
-[Awesmoe Books](https://zieeco.github.io/awesome-book/)
+[Awesome Books](https://zieeco.github.io/awesome-book/)
 
 ## Built With!
 

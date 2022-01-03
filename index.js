@@ -6,8 +6,9 @@ const displayBooks = (id, title, author) => {
   const li = document.createElement('li');
   const br = document.createElement('br');
   li.innerHTML = `
-  <h2>${title}</h2>
-  <h2>${author}</h2>
+  <h3>${title}</h3>
+  <h3>${author}</h3>
+  <br>
   <hr>`;
   const removeBookBtn = document.createElement('button');
   removeBookBtn.textContent = 'Remove';
@@ -17,14 +18,13 @@ const displayBooks = (id, title, author) => {
   removeBookBtn.addEventListener('click', () => {
     books = books.filter((book) => {
       if (book.id !== id) {
-        return true
-      }else {
-        return false
+        return true;
       }
-    })
-    localStorage.setItem('books', JSON.stringify(books))
-    li.remove()
-  })
+      return false;
+    });
+    localStorage.setItem('books', JSON.stringify(books));
+    li.remove();
+  });
 };
 
 const printErrorMsg = (message) => {
@@ -41,17 +41,17 @@ const addBook = (title, author) => {
     printErrorMsg('Please fill in all the fields');
   } else {
     books.push(bookObj);
-    localStorage.setItem('books', JSON.stringify(books))
+    localStorage.setItem('books', JSON.stringify(books));
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
     displayBooks(bookObj.id, bookObj.title, bookObj.author);
   }
 };
 
-  const getBookFromStorage = JSON.parse(localStorage.getItem('books'))
-  if(getBookFromStorage) {
-    books = getBookFromStorage;
-  }
+const getBookFromStorage = JSON.parse(localStorage.getItem('books'));
+if (getBookFromStorage) {
+  books = getBookFromStorage;
+}
 
 books.forEach((book) => {
   displayBooks(book.id, book.title, book.author);
