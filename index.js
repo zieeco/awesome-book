@@ -1,33 +1,38 @@
 const bookList = document.querySelector('#book-list');
-const AddBtn = document.querySelector('#add-btn');
+const addBtn = document.querySelector('#add-btn');
 let books = [];
 
 const displayBooks = (id, title, author) => {
   const li = document.createElement('li');
+  const br = document.createElement('br');
   li.innerHTML = `
   <h2>${title}</h2>
-  <p>${author}</p>
+  <h2>${author}</h2>
   <hr>`;
   const removeBookBtn = document.createElement('button');
   removeBookBtn.textContent = 'Remove';
   li.insertBefore(removeBookBtn, li.lastElementChild);
+  li.appendChild(br);
   bookList.appendChild(li);
 };
 
+const printErrorMsg = (message) => {
+  document.querySelector('.err-msg').innerHTML = message;
+  setTimeout(() => {
+    document.querySelector('.err-msg').innerHTML = '';
+  }, 2000);
+};
+
 const addBook = (title, author) => {
-  const bookId = Date.now();
-  const bookObj = {
-    id: bookId,
-    title,
-    author,
-  };
+  const id = Date.now();
+  const bookObj = { id, title, author };
   if (title === '' || author === '') {
-    const errMsg = document.querySelector('.err-msg');
-    errMsg.textContent = 'Please fill in all fields';
+    printErrorMsg('Please fill in all the fields');
   } else {
     books.push(bookObj);
-    displayBooks(bookObj.bookId, bookObj.title, bookObj.author);
-    document.querySelector('.err.msg').textContent = '';
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    displayBooks(bookObj.id, bookObj.title, bookObj.author);
   }
 };
 
@@ -36,7 +41,7 @@ books.forEach((book) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  AddBtn.addEventListener('click', (e) => {
+  addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
