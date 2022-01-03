@@ -14,6 +14,17 @@ const displayBooks = (id, title, author) => {
   li.insertBefore(removeBookBtn, li.lastElementChild);
   li.appendChild(br);
   bookList.appendChild(li);
+  removeBookBtn.addEventListener('click', () => {
+    books = books.filter((book) => {
+      if (book.id !== id) {
+        return true
+      }else {
+        return false
+      }
+    })
+    localStorage.setItem('books', JSON.stringify(books))
+    li.remove()
+  })
 };
 
 const printErrorMsg = (message) => {
@@ -30,11 +41,17 @@ const addBook = (title, author) => {
     printErrorMsg('Please fill in all the fields');
   } else {
     books.push(bookObj);
+    localStorage.setItem('books', JSON.stringify(books))
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
     displayBooks(bookObj.id, bookObj.title, bookObj.author);
   }
 };
+
+  const getBookFromStorage = JSON.parse(localStorage.getItem('books'))
+  if(getBookFromStorage) {
+    books = getBookFromStorage;
+  }
 
 books.forEach((book) => {
   displayBooks(book.id, book.title, book.author);
