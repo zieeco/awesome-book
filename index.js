@@ -48,10 +48,12 @@ class Book {
       }
       return false;
     });
+    localStorage.setItem('books', JSON.stringify(books));
   }
 }
 
 const displayBook = (id, title, author) => {
+  bookList.classList.add('border');
   const li = document.createElement('li');
   li.innerHTML = `<div class="d-flex-only">
   <h3><q>${title}</q></h3>
@@ -66,10 +68,21 @@ const displayBook = (id, title, author) => {
     const book = new Book(id, title, author);
     id = removeBookBtn.id;
     book.removeBook();
-    localStorage.setItem('books', JSON.stringify(books));
-    li.remove();
+    if (li.previousElementSibling === null && li.nextElementSibling === null) {
+      bookList.classList.remove('border');
+      li.remove();
+    } else {
+      li.remove();
+      bookList.classList.add('border');
+    }
   });
 };
+
+if (bookList !== null) {
+  bookList.classList.add('border');
+} else {
+  bookList.classList.remove('border');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   addBtn.addEventListener('click', (e) => {
