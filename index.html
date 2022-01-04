@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Awesome Books</title>
 </head>
+
 <body>
-  <h1>Awesome Books</h1>
-  <ul id="book-list"></ul>
-  <form action="#">
-    <input type="text" id="title" placeholder="Title"> <br><br>
-    <input type="text" id="author" placeholder="Author"> <br><br>
-    <button type="submit" id="add-btn">Add</button>
-    <br>
-    <small class="err-msg"></small>
-  </form>
+  <main>
+    <section class="bk-sect">
+
+      <section class="main-book">
+        <h1>All awesome books</h1>
+        <ul id="book-list"></ul>
+        <div class="line"></div>
+      </section>
+      
+      <section class="bk-form d-flex-2">
+        <form class="d-flex-2">
+          <h2>Add a new book</h2>
+          <input type="text" id="title" placeholder="Title">
+          <input type="text" id="author" placeholder="Author">
+          <button type="submit" id="add-btn">Add</button>
+          <small class="err-msg"></small>
+        </form>
+      </section>
+    </section>
+  </main>
 
   <script src="index.js"></script>
 </body>
+
 </html>
