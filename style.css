@@ -1,8 +1,131 @@
-
-h2,
-ul,
-li {
-  list-style: none;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  line-height: 24px;
+  font-weight: normal;
+  font-family: 'Balsamiq Sans', cursive;
+  font-style: normal;
+}
+
+ul,
+li,
+a {
+  list-style: none;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+button:active {
+  opacity: 0.5;
+}
+
+.d-flex-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.d-flex-only {
+  display: flex;
+}
+
+.text-center {
+  text-align: center;
+}
+
+section.bk-sect {
+  padding: 24px;
+}
+
+section.main-book .line {
+  width: 10%;
+  height: 3px;
+  background: black;
+  margin: 0 auto;
+}
+
+section.bk-form form {
+  padding: 24px 0;
+  gap: 12px;
+}
+
+section.bk-sect h1,
+section.bk-form h2 {
+  text-align: center;
+  font-weight: 500;
+}
+
+section.bk-form form input {
+  outline: none;
+  width: 100%;
+  height: 32px;
+  padding: 2px 16px 2px 15px;
+  border: 2px solid black;
+}
+
+.border {
+  border: 2px solid black;
+}
+
+section.main-book ul {
+  margin: 32px 0;
+}
+
+section.main-book ul li {
+  padding: 0 8px;
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+section.main-book ul li div {
+  display: flex;
+  align-self: flex-start;
+  margin: auto 0;
+  gap: 4px;
+}
+
+section.main-book ul li:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+section.bk-form form button,
+section.main-book ul li button {
+  box-shadow: 0.17em 0.17em;
+  border: 2px solid black;
+  padding: 8px;
+  align-self: flex-end;
+  margin: auto 0;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 768px) {
+  section.bk-sect {
+    padding: 4% 10%;
+  }
+
+  section.main-book ul {
+    max-width: 600px;
+    margin: 32px auto;
+  }
+
+  section.bk-form form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }
