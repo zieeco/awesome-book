@@ -1,6 +1,45 @@
 const bookList = document.querySelector('#book-list');
 const addBtn = document.querySelector('#add-btn');
-let books = [];
+let books = JSON.parse(localStorage.getItem('books'));
+
+class Book {
+  constructor (id, title, author) {
+    this.id = id
+    this.title = title
+    this.author = author
+  }
+
+  addBook(){
+    const {id, title, author} = this
+    const bookObj = {id, title, author}
+    books = JSON.parse(localStorage.getItem('books'));
+    if (title === '' || author === '') {
+    printErrorMsg('Please fill in all the fields');
+  } else if (books !== null) {
+    books.push(bookObj)
+    localStorage.setItem('books', JSON.stringify(books));
+    books = JSON.parse(localStorage.getItem('books'));
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+  }else {
+    books = []
+    books.push(bookObj)
+    localStorage.setItem('books', JSON.stringify(books));
+    books = JSON.parse(localStorage.getItem('books'));
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+  }
+  }
+  removeBook(){
+    const {id} = this
+    books = books.filter((book) => {
+      if (book.id !== id) {
+        return true;
+      }
+      return false;
+    });
+  }
+}
 
 const displayBooks = (id, title, author) => {
   const li = document.createElement('li');
@@ -16,12 +55,9 @@ const displayBooks = (id, title, author) => {
   li.appendChild(br);
   bookList.appendChild(li);
   removeBookBtn.addEventListener('click', () => {
-    books = books.filter((book) => {
-      if (book.id !== id) {
-        return true;
-      }
-      return false;
-    });
+    id = removeBookBtn.id
+    const book = new Book (id, title, author)
+    book.removeBook()
     localStorage.setItem('books', JSON.stringify(books));
     li.remove();
   });
@@ -34,34 +70,22 @@ const printErrorMsg = (message) => {
   }, 2000);
 };
 
-const addBook = (title, author) => {
-  const id = Date.now();
-  const bookObj = { id, title, author };
-  if (title === '' || author === '') {
-    printErrorMsg('Please fill in all the fields');
-  } else {
-    books.push(bookObj);
-    localStorage.setItem('books', JSON.stringify(books));
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    displayBooks(bookObj.id, bookObj.title, bookObj.author);
-  }
-};
-
-const getBookFromStorage = JSON.parse(localStorage.getItem('books'));
-if (getBookFromStorage) {
-  books = getBookFromStorage;
-}
-
-books.forEach((book) => {
-  displayBooks(book.id, book.title, book.author);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    addBook(title, author);
+    const id = Date.now()
+    const newBook = new Book (id, title, author)
+    newBook.addBook()
+    if (title && author) {
+      displayBooks(book.id, book.title, book.author)
+    }
   });
 });
+
+if (books !== null) {
+  books.forEach((book) => {
+    displayBooks(book.id, book.title, book.author);
+  });
+}
