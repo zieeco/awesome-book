@@ -2,36 +2,46 @@ const bookList = document.querySelector('#book-list');
 const addBtn = document.querySelector('#add-btn');
 let books = JSON.parse(localStorage.getItem('books'));
 
+const printErrorMsg = (message) => {
+  const errMsg = document.querySelector('.err-msg');
+  errMsg.style.color = 'red';
+  document.querySelector('.err-msg').textContent = message;
+  setTimeout(() => {
+    document.querySelector('.err-msg').textContent = '';
+  }, 2000);
+};
+
 class Book {
-  constructor (id, title, author) {
-    this.id = id
-    this.title = title
-    this.author = author
+  constructor(id, title, author) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
   }
 
-  addBook(){
-    const {id, title, author} = this
-    const bookObj = {id, title, author}
+  addBook() {
+    const { id, title, author } = this;
+    const bookObj = { id, title, author };
     books = JSON.parse(localStorage.getItem('books'));
     if (title === '' || author === '') {
-    printErrorMsg('Please fill in all the fields');
-  } else if (books !== null) {
-    books.push(bookObj)
-    localStorage.setItem('books', JSON.stringify(books));
-    books = JSON.parse(localStorage.getItem('books'));
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-  }else {
-    books = []
-    books.push(bookObj)
-    localStorage.setItem('books', JSON.stringify(books));
-    books = JSON.parse(localStorage.getItem('books'));
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
+      printErrorMsg('Please fill in all the fields');
+    } else if (books !== null) {
+      books.push(bookObj);
+      localStorage.setItem('books', JSON.stringify(books));
+      books = JSON.parse(localStorage.getItem('books'));
+      document.getElementById('title').value = '';
+      document.getElementById('author').value = '';
+    } else {
+      books = [];
+      books.push(bookObj);
+      localStorage.setItem('books', JSON.stringify(books));
+      books = JSON.parse(localStorage.getItem('books'));
+      document.getElementById('title').value = '';
+      document.getElementById('author').value = '';
+    }
   }
-  }
-  removeBook(){
-    const {id} = this
+
+  removeBook() {
+    const { id } = this;
     books = books.filter((book) => {
       if (book.id !== id) {
         return true;
@@ -41,33 +51,24 @@ class Book {
   }
 }
 
-const displayBooks = (id, title, author) => {
+const displayBook = (id, title, author) => {
   const li = document.createElement('li');
-  const br = document.createElement('br');
-  li.innerHTML = `
-  <h3>${title}</h3>
+  li.innerHTML = `<div class="d-flex-only">
+  <h3><q>${title}</q></h3>
+  <span>by</span>
   <h3>${author}</h3>
-  <br>
-  <hr>`;
+  </div>`;
   const removeBookBtn = document.createElement('button');
   removeBookBtn.textContent = 'Remove';
-  li.insertBefore(removeBookBtn, li.lastElementChild);
-  li.appendChild(br);
+  li.appendChild(removeBookBtn);
   bookList.appendChild(li);
   removeBookBtn.addEventListener('click', () => {
-    id = removeBookBtn.id
-    const book = new Book (id, title, author)
-    book.removeBook()
+    const book = new Book(id, title, author);
+    id = removeBookBtn.id;
+    book.removeBook();
     localStorage.setItem('books', JSON.stringify(books));
     li.remove();
   });
-};
-
-const printErrorMsg = (message) => {
-  document.querySelector('.err-msg').innerHTML = message;
-  setTimeout(() => {
-    document.querySelector('.err-msg').innerHTML = '';
-  }, 2000);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -75,17 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    const id = Date.now()
-    const newBook = new Book (id, title, author)
-    newBook.addBook()
+    const id = Date.now();
+    const book = new Book(id, title, author);
+    book.addBook();
     if (title && author) {
-      displayBooks(book.id, book.title, book.author)
+      displayBook(book.id, book.title, book.author);
     }
   });
 });
 
 if (books !== null) {
   books.forEach((book) => {
-    displayBooks(book.id, book.title, book.author);
+    displayBook(book.id, book.title, book.author);
   });
 }

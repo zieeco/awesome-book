@@ -47,23 +47,6 @@ button:active {
   text-align: center;
 }
 
-
-@media screen and (min-width: 768px) {
-  section.book-sect {
-    padding: 4% 10%;
-  }
-
-  section.book-sect ul {
-    max-width: 600px;
-    margin: 32px auto;
-  }
-
-  section.book-sect form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
 section.bk-sect {
   padding: 24px;
 }
@@ -98,10 +81,6 @@ section.bk-form form input {
   border: 2px solid black;
 }
 
-.err.msg {
-  color: red;
-}
-
 section.main-book ul {
   margin: 32px 0;
 }
@@ -122,8 +101,7 @@ section.main-book ul li div {
 }
 
 section.main-book ul li:nth-child(odd) {
-  background-color: grey;
-  opacity: 0.9;
+  background-color: rgba(128, 128, 128, 0.5);
 }
 
 section.bk-form form button,
@@ -133,6 +111,7 @@ section.main-book ul li button {
   padding: 8px;
   align-self: flex-end;
   margin: auto 0;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 768px) {
