@@ -137,6 +137,10 @@ section.main-book ul li button {
   margin: auto 0;
 }
 
+.hide {
+  display: none;
+}
+
 .mr-4 {
   margin-right: 4px;
 }
