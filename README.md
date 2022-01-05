@@ -3,7 +3,7 @@
 A Website demo for our project of book store, The website has ability of adding and removing you books from yor library, Thats reflects our coding skills.
 
 <p align="center">
-  <img src="./awesome.png"/>
+  <img src="./screenshot.png">
 </p>
 
 ## Live Link
@@ -24,6 +24,8 @@ To get a local copy up and running follow these simple example steps.
 
 clone repo: https://github.com/zieeco/awesome-book
 
+### Authors
+
 👤 **Author1**
 
 - GitHub: [@zieeco](https://github.com/zieeco)
@@ -38,8 +40,6 @@ clone repo: https://github.com/zieeco/awesome-book
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](../../issues/).
 
 ## Show your support
 
