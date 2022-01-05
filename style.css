@@ -150,6 +150,17 @@ section.main-book ul li button {
   padding-bottom: 40px;
 }
 
+footer p {
+  font-size: 20px;
+  padding: 15px 20px;
+  border: 0.3em solid black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+}
+
 section.contact-sect p {
   margin: 20px auto;
 }
@@ -169,24 +180,9 @@ section.main-book ul li:nth-child(odd) {
   background-color: rgba(128, 128, 128, 0.5);
 }
 
-/* copyright */
-
-footer p {
-  font-size: 20px;
-  padding: 15px 20px;
-  border: 0.3em solid black;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-}
-
 footer p a {
   color: blue;
 }
-
-/* date */
 
 .date {
   display: flex;

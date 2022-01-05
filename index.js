@@ -98,16 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const seeListsOfBooks = document.getElementById('list-of-books');
-const addNewBook = document.getElementById('add-new-link');
-const contactLink = document.getElementById('contact-link');
-
 const date = document.getElementById('date');
 // eslint-disable-next-line no-undef
 const { DateTime } = luxon;
 const now = DateTime.now();
 date.innerText = now.toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS);
 
+const seeListsOfBooks = document.getElementById('list-of-books');
+const addNewBook = document.getElementById('add-new-link');
+const contactLink = document.getElementById('contact-link');
 
 seeListsOfBooks.addEventListener('click', () => {
   seeListsOfBooks.classList.add('active');
