@@ -1,4 +1,3 @@
-const bookList = document.querySelector('#book-list');
 const addBtn = document.querySelector('#add-btn');
 let books = JSON.parse(localStorage.getItem('books'));
 
@@ -53,12 +52,13 @@ class Book {
 }
 
 const displayBook = (id, title, author) => {
+  const bookList = document.querySelector('#book-list');
   bookList.classList.add('border');
   const li = document.createElement('li');
   li.innerHTML = `<div class="d-flex-only">
-  <h3><q>${title}</q></h3>
+  <h2><q>${title}</q></h2>
   <span>by</span>
-  <h3>${author}</h3>
+  <h2>${author}</h2>
   </div>`;
   const removeBookBtn = document.createElement('button');
   removeBookBtn.textContent = 'Remove';
@@ -73,15 +73,14 @@ const displayBook = (id, title, author) => {
       li.remove();
     } else {
       li.remove();
-      bookList.classList.add('border');
     }
   });
 };
 
-if (bookList !== null) {
-  bookList.classList.add('border');
-} else {
-  bookList.classList.remove('border');
+if (books !== null) {
+  books.forEach((book) => {
+    displayBook(book.id, book.title, book.author);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -89,17 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
+    const toTitleCase = (str) => str.toLowerCase().split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
     const id = Date.now();
-    const book = new Book(id, title, author);
+    const book = new Book(id, toTitleCase(title), toTitleCase(author));
     book.addBook();
     if (title && author) {
       displayBook(book.id, book.title, book.author);
     }
   });
 });
-
-if (books !== null) {
-  books.forEach((book) => {
-    displayBook(book.id, book.title, book.author);
-  });
-}

@@ -13,24 +13,49 @@
 </head>
 
 <body>
+  <header>
+    <div class="container d-flex-only">
+      <div class="a">Awesome Books</div>
+      <nav class="d-flex-only">
+        <ul class="d-flex-only">
+          <li class="br "><a class="active" href="#" id="list-of-books">List</a></li>
+          <li class="br"><a href="#add-book" id="add-new-link">Add new</a></li>
+          <li class=""><a href="#contact" id="contact-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <main>
+    <section class="date" id="date"></section>
+
     <section class="bk-sect">
 
-      <section class="main-book">
+      <section class="main-book" id="aweome-books">
         <h1>All awesome books</h1>
         <ul id="book-list"></ul>
-        <div class="line"></div>
       </section>
 
-      <section class="bk-form d-flex-2">
-        <form class="d-flex-2">
+      <section class="bk-form d-flex-2 hide" id="add-book">
+        <form class="d-flex-2" id="book-form">
           <h2>Add a new book</h2>
           <input type="text" id="title" placeholder="Title">
           <input type="text" id="author" placeholder="Author">
-          <button type="submit" id="add-btn">Add</button>
+          <button class="mr-4" type="submit" id="add-btn">Add</button>
           <small class="err-msg"></small>
         </form>
       </section>
+
+      <section class="contact-sect d-flex-2 p-tb p-tb-lg hide" id="contact">
+        <h2 class="text-center">Contact information</h2>
+        <p class="text-center">Do you have any questions or you just want to say <q>Hello</q>?
+          You can reach out to us!</p>
+        <ul class="d-flex-2">
+          <li>Our e-mail: mail@mail.com</li>
+          <li>Our phone number: 0043586534422</li>
+          <li>Our address: Streetname 22, 84503 City, Country</li>
+        </ul>
+      </section>
+
     </section>
   </main>
 

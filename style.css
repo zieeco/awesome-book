@@ -14,9 +14,13 @@ body {
 }
 
 ul,
-li,
-a {
+li {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 button {
@@ -47,20 +51,33 @@ button:active {
   text-align: center;
 }
 
-section.bk-sect {
-  padding: 24px;
+.active {
+  color: blue;
 }
 
-section.main-book .line {
-  width: 10%;
-  height: 3px;
-  background: black;
-  margin: 0 auto;
+.br {
+  border-right: 0.3em solid black;
+}
+
+header {
+  border: 0.3em solid black;
+  padding: 8px 16px 8px 12px;
+}
+
+header .container {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section.bk-sect {
+  padding: 24px;
 }
 
 section.bk-form form {
   padding: 24px 0;
   gap: 12px;
+  width: 100%;
 }
 
 section.bk-sect h1,
@@ -71,7 +88,7 @@ section.bk-form h2 {
 
 section.bk-form form input {
   outline: none;
-  width: 100%;
+  width: 98%;
   height: 32px;
   padding: 2px 16px 2px 15px;
   border: 2px solid black;
@@ -93,15 +110,18 @@ section.main-book ul li {
   justify-content: space-between;
 }
 
+section.main-book ul li div h2 {
+  font-size: 14px;
+  align-self: flex-start;
+}
+
 section.main-book ul li div {
   display: flex;
   align-self: flex-start;
   margin: auto 0;
   gap: 4px;
-}
-
-section.main-book ul li:nth-child(odd) {
-  background-color: rgba(128, 128, 128, 0.5);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 section.bk-form form button,
@@ -110,8 +130,39 @@ section.main-book ul li button {
   border: 2px solid black;
   padding: 8px;
   align-self: flex-end;
-  margin: auto 0;
   font-weight: bold;
+}
+
+section.main-book ul li button {
+  margin: auto 0;
+}
+
+.mr-4 {
+  margin-right: 4px;
+}
+
+.p-tb {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+section.contact-sect p {
+  margin: 20px auto;
+}
+
+section.contact-sect ul li {
+  align-self: flex-start;
+  margin: 0 24px;
+  list-style: disc;
+}
+
+header .container nav ul li {
+  display: inline-block;
+  padding: 5px;
+}
+
+section.main-book ul li:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.5);
 }
 
 @media screen and (min-width: 768px) {
@@ -124,8 +175,23 @@ section.main-book ul li button {
     margin: 32px auto;
   }
 
+  .p-tb-lg {
+    padding-top: 8%;
+    padding-bottom: 8%;
+  }
+
   section.bk-form form {
     max-width: 300px;
     margin: 0 auto;
+  }
+
+  section.contact-sect p {
+    max-width: 444px;
+    text-align: left;
+    margin: 40px auto;
+  }
+
+  header .container nav ul li {
+    padding: 0.3em 3em;
   }
 }
